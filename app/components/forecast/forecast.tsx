@@ -1,0 +1,1 @@
+// forecast component with weather details
