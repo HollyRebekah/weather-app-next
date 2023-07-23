@@ -15,10 +15,10 @@ const WeatherTile = (props:{ data :WeatherData }) => {
 
     return (
         <div className={styles.tile} data-testid='weather-tile'>
-            <p>{date}</p>
-            <Image src={`/weather-icons/${getIconCode()}.png`} alt={data.day?.condition.text || 'weather-icon'} width="64" height="64"/>
-            <p>{`${data.day?.maxtemp_c}°C `}</p>
-            <p>{data.day?.condition.text}</p>
+            <p className={styles.text}>{date}</p>
+            <Image className={styles.icon} src={`/weather-icons/${getIconCode()}.png`} alt={data.day?.condition.text || 'weather-icon'} width="64" height="64"/>
+            <p className={styles.text}>{`${data.day?.maxtemp_c}°C `}</p>
+            <p className={styles.text}>{data.day?.condition.text}</p>
         </div>
     )
 }
