@@ -7,8 +7,10 @@ import styles from './index.module.css'
 const WeatherTile = (props:{ data :WeatherData }) => {
     const {data} = props
 
-    const getIconCode = () => {
-        return WeatherCodes.find(condition => condition.code === data.day?.condition.code ).icon
+    const getIconCode = (): number => {
+        const weatherCode = WeatherCodes.find(condition => condition.code === data.day?.condition.code)
+        if(!weatherCode) return 0
+        return weatherCode.icon
     }
 
     const date = new Date(data.date_epoch * 1000).toDateString()
