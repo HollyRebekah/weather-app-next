@@ -16,7 +16,7 @@ const SearchBar = (props: {handleSearch: (city: string) => void}) => {
             e.preventDefault()
             props.handleSearch(value)}
         }>
-            <TextField 
+            <TextField
                 id="outlined-basic" 
                 label="City" 
                 variant="outlined" 
@@ -26,7 +26,7 @@ const SearchBar = (props: {handleSearch: (city: string) => void}) => {
                 InputProps={{
                     startAdornment: (
                       <InputAdornment position='end'>
-                        <IconButton type="submit">
+                        <IconButton data-testid="search-bar-button" type="submit">
                             <SearchIcon/>
                         </IconButton>
                       </InputAdornment>

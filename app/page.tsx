@@ -5,15 +5,27 @@ import styles from './page.module.css'
 import SearchBar from './components/searchBar/index'
 import Forecast from './components/forecast'
 
-const Home = () => {
-const [data, setData] = useState([])
+import { WeatherData } from "@/app/types"
 
-const getData = (city: string) => {
-  fetch(`http://api.weatherapi.com/v1/forecast.json?key=59509ce8074e43368c2103802232207&q=${city}&days=3`)
-  .then((response) => response.json())
-  .then((data) => {
+const Home = () => {
+const [data, setData] = useState<Array<WeatherData>>([])
+const [error, setError] = useState<boolean>(false)
+
+const getData =  async (city: string) => {
+  try {
+    const res = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=59509ce8074e43368c2103802232207&q=${city}&days=3`)
+    const data = await res.json()
+    if(data.length === 0) {
+      setError(true)
+    } else {
+      setError(false)
       setData(data.forecast.forecastday)
-  })
+    }
+  }
+  catch(error) {
+    setError(true);
+  }
+  
 }
   
   return (
@@ -21,7 +33,10 @@ const getData = (city: string) => {
       <div className={styles.container}>
         <p className={styles.description}>Weather App</p>
         <SearchBar handleSearch={getData}/>
-        <Forecast weatherData={data}/>
+        { error ? 
+          <p data-testid="error-message"> Sorry, there has been an error retrieving the forecast. Please double check the city you have entered and search again. </p> : 
+          <Forecast weatherData={data}/>
+        }
       </div>
     </main>
   )
