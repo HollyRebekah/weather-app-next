@@ -31,7 +31,7 @@ const getData =  async (city: string) => {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <p className={styles.description}>Holly's Weather App</p>
+        <p className={styles.description}>Holly&apos;s Weather App</p>
         <SearchBar handleSearch={getData}/>
         { error ? 
           <p data-testid="error-message"> Sorry, there has been an error retrieving the forecast. Please double check the city you have entered and search again. </p> : 
