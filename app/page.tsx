@@ -13,7 +13,7 @@ const [error, setError] = useState<boolean>(false)
 
 const getData =  async (city: string) => {
   try {
-    const res = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=59509ce8074e43368c2103802232207&q=${city}&days=3`)
+    const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=59509ce8074e43368c2103802232207&q=${city}&days=3`)
     const data = await res.json()
     if(data.length === 0) {
       setError(true)
