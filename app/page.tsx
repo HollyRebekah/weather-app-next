@@ -12,20 +12,15 @@ const [data, setData] = useState<Array<WeatherData>>([])
 const [error, setError] = useState<boolean>(false)
 
 const getData =  async (city: string) => {
-  try {
-    const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=59509ce8074e43368c2103802232207&q=${city}&days=3`)
-    const data = await res.json()
-    if(data.length === 0) {
-      setError(true)
-    } else {
-      setError(false)
-      setData(data.forecast.forecastday)
-    }
-  }
-  catch(error) {
-    setError(true);
-  }
+  const response = await fetch(`/api/weather?city=${city}`)
+  const data = await response.json();
   
+  if(data.success && data.forecastData.length > 0) {
+    setError(false)
+    setData(data.forecastData.forecast.forecastday)
+  } else {
+    setError(true)
+  }
 }
   
   return (

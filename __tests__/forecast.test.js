@@ -1,5 +1,5 @@
 import {render} from '@testing-library/react'
-import Forecast from '../../app/components/forecast/index'
+import Forecast from '../app/components/forecast/index'
 
 describe('forecast', () => {
     it('it renders a tile for each day of the forecast data', () => {
