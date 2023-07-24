@@ -15,7 +15,7 @@ const getData =  async (city: string) => {
   const response = await fetch(`/api/weather?city=${city}`)
   const data = await response.json();
   
-  if(data.success && data.forecastData.length > 0) {
+  if(data.success && data.forecastData.forecast.forecastday.length > 0) {
     setError(false)
     setData(data.forecastData.forecast.forecastday)
   } else {
